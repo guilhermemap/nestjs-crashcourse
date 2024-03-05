@@ -18,6 +18,6 @@ export class UserController {
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
-    return `this route is for creating a user called ${createUserDto.name} with email ${createUserDto.email}`;
+    return createUserDto;
   }
 }
