@@ -10,12 +10,11 @@ export class UserService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  findOne(id: number) {
-    return {
-      id: id,
-    };
+  async findOne(id: number) {
+    return await this.userRepository.findOne({ where: { id: id } });
   }
-  create(user: CreateUserDto) {
-    return user;
+  async create(userDto: CreateUserDto) {
+    const user = await this.userRepository.create(userDto);
+    return await this.userRepository.save(user);
   }
 }
